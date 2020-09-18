@@ -19,6 +19,7 @@ init =
 type Msg
     = UpdateUsername String
     | UpdatePassword String
+    | PostLogin
 
 
 update : Msg -> Model -> ( Model, Cmd msg )
@@ -29,3 +30,12 @@ update msg model =
 
         UpdatePassword password ->
             ( { model | password = password }, Cmd.none )
+
+        PostLogin ->
+            let
+                _ =
+                    Debug.log
+                        "Login"
+                        model.username
+            in
+            ( model, Cmd.none )

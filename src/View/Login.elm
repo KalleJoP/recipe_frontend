@@ -9,9 +9,9 @@ import Msg
 import Router
 
 
-login : Model.Model -> Html Msg.Msg
+login : Model.Model -> List (Html Msg.Msg)
 login _ =
-    div [ class "w-full" ]
+    [ div [ class "w-full" ]
         [ div [ class "max-w-xs m-auto my-32" ]
             [ img [ class "block mr-auto ml-auto w-32", src "/assets/wave.svg" ] []
             , h1 [ class "" ] [ text "Recipes" ]
@@ -40,3 +40,4 @@ login _ =
                 [ text "2020 Recipes." ]
             ]
         ]
+    ]

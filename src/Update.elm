@@ -2,6 +2,7 @@ module Update exposing (..)
 
 import Browser
 import Browser.Navigation as Nav
+import Data.FoodItemModel as FoodItemModel
 import Data.Login as Login
 import Data.Recipe as Recipe
 import Model
@@ -46,3 +47,13 @@ update msg model =
                     Recipe.update recipeMsg model.recipe_list
             in
             ( { model | recipe_list = recipe_list }, Cmd.none )
+
+        NavMsg state ->
+            ( { model | navState = state }, Cmd.none )
+
+        FoodItemModelMsg foodItemModelMsg ->
+            let
+                ( food_item_model, cmd ) =
+                    FoodItemModel.update foodItemModelMsg model.food_item_model
+            in
+            ( { model | food_item_model = food_item_model }, Cmd.map FoodItemModelMsg cmd )
