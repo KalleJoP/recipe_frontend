@@ -1,6 +1,5 @@
 module Msg exposing (..)
 
-import Bootstrap.Navbar as Navbar
 import Browser
 import Data.FoodItemModel as FoodItemModel
 import Data.Login as Login
@@ -17,5 +16,4 @@ type Msg
     | LoginMsg Login.Msg
     | GetRecipeList
     | RecipeMsg Recipe.Msg
-    | NavMsg Navbar.State
     | FoodItemModelMsg FoodItemModel.Msg

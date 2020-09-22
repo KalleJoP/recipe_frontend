@@ -27,6 +27,7 @@ type Msg
     | RecieveFoodItemList (Result Http.Error (List FoodItem.Model))
     | GetFoodItemList
     | SelectFoodItem String
+    | EditFoodItemMsg FoodItem.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -71,6 +72,13 @@ update msg model =
 
                 Nothing ->
                     ( model, Cmd.none )
+
+        EditFoodItemMsg editFoodItemMsg ->
+            let
+                ( edit_food_item, cmd ) =
+                    FoodItem.update editFoodItemMsg model.edit_food_item
+            in
+            ( { model | edit_food_item = edit_food_item }, Cmd.map FoodItemMsg cmd )
 
 
 getFoodItemFromList : Int -> List FoodItem.Model -> Maybe FoodItem.Model

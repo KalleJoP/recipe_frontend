@@ -26,6 +26,7 @@ type Msg
     | UpdateQuantityType String
     | SaveFoodItem
     | RecieveFoodItem (Result Http.Error Model)
+    | EditFootItem
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -48,6 +49,22 @@ update msg model =
 
                 Err _ ->
                     ( model, Cmd.none )
+
+        EditFootItem ->
+            ( model, editFoodItem model )
+
+
+editFoodItem : Model -> Cmd Msg
+editFoodItem model =
+    Http.request
+        { url = "/api/food_items/" ++ String.fromInt model.id
+        , body = Http.jsonBody (foodItemEncodeObject model)
+        , expect = Http.expectJson RecieveFoodItem foodItemDecoder
+        , method = "PATCH"
+        , timeout = Nothing
+        , tracker = Nothing
+        , headers = []
+        }
 
 
 saveFoodItem : Model -> Cmd Msg
