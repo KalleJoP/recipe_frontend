@@ -1,6 +1,5 @@
 module Model exposing (..)
 
-import Bootstrap.Navbar as Navbar
 import Browser.Navigation as Nav
 import Data.FoodItemModel as FoodItemModel
 import Data.Login as Login
@@ -15,7 +14,6 @@ type alias Model =
     , key : Nav.Key
     , login : Login.Model
     , recipe_list : Recipe.Model
-    , navState : Navbar.State
     , food_item_model : FoodItemModel.Model
     }
 
@@ -26,9 +24,6 @@ init _ url key =
         ( recipe_list, cmd ) =
             Recipe.init ()
 
-        ( navState, navCmd ) =
-            Navbar.initialState Msg.NavMsg
-
         ( food_item, food_item_cmd ) =
             FoodItemModel.init ()
     in
@@ -36,8 +31,7 @@ init _ url key =
       , key = key
       , login = Login.init
       , recipe_list = recipe_list
-      , navState = navState
       , food_item_model = food_item
       }
-    , Cmd.batch [ Cmd.map Msg.RecipeMsg cmd, navCmd, Cmd.map Msg.FoodItemModelMsg food_item_cmd ]
+    , Cmd.batch [ Cmd.map Msg.RecipeMsg cmd, Cmd.map Msg.FoodItemModelMsg food_item_cmd ]
     )

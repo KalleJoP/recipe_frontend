@@ -48,9 +48,6 @@ update msg model =
             in
             ( { model | recipe_list = recipe_list }, Cmd.none )
 
-        NavMsg state ->
-            ( { model | navState = state }, Cmd.none )
-
         FoodItemModelMsg foodItemModelMsg ->
             let
                 ( food_item_model, cmd ) =

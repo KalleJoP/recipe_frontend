@@ -1,7 +1,5 @@
 module Main exposing (..)
 
-import Bootstrap.Grid as Grid
-import Bootstrap.Navbar as Navbar
 import Browser
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
@@ -45,7 +43,7 @@ view model =
 
 mainContent : Model.Model -> Html Msg.Msg
 mainContent model =
-    Grid.containerFluid [ class "container-margin" ] <|
+    div [ class "test" ] <|
         case model.activeRoute of
             Router.Dashboard ->
                 View.Dashboard.dashboard model
@@ -60,11 +58,6 @@ mainContent model =
                 View.EditFoodItem.editFoodItem model
 
 
-subscriptions : Model.Model -> Sub Msg.Msg
-subscriptions model =
-    Navbar.subscriptions model.navState Msg.NavMsg
-
-
 
 ---- PROGRAM ----
 
@@ -75,7 +68,7 @@ main =
         { view = view
         , init = Model.init
         , update = Update.update
-        , subscriptions = subscriptions
+        , subscriptions = always Sub.none
         , onUrlChange = onUrlChange
         , onUrlRequest = onUrlRequest
         }
