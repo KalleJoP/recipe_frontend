@@ -29,7 +29,25 @@ update msg model =
                     ( model, Nav.load url )
 
         UrlChange url ->
-            ( { model | activeRoute = Router.nextRoute url }, Cmd.none )
+            let
+                nav_status =
+                    case Router.nextRoute url of
+                        Router.CreateFoodItem ->
+                            Model.EditActive
+
+                        Router.EditFoodItem ->
+                            Model.EditActive
+
+                        Router.EditForm ->
+                            Model.EditActive
+
+                        Router.RecipeForm ->
+                            Model.RecipeActive
+
+                        _ ->
+                            Model.HomeActive
+            in
+            ( { model | activeRoute = Router.nextRoute url, nav_status = nav_status }, Cmd.none )
 
         LoginMsg loginMsg ->
             let

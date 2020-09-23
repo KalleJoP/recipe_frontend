@@ -8,6 +8,8 @@ type Route
     | Dashboard
     | CreateFoodItem
     | EditFoodItem
+    | EditForm
+    | RecipeForm
 
 
 nextRoute : Url.Url -> Route
@@ -18,6 +20,12 @@ nextRoute url =
 
         "/edit-food-item" ->
             EditFoodItem
+
+        "/edit" ->
+            EditForm
+
+        "/recipes" ->
+            RecipeForm
 
         _ ->
             Dashboard

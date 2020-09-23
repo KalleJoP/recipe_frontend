@@ -32,10 +32,4 @@ update msg model =
             ( { model | password = password }, Cmd.none )
 
         PostLogin ->
-            let
-                _ =
-                    Debug.log
-                        "Login"
-                        model.username
-            in
             ( model, Cmd.none )

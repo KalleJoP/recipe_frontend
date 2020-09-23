@@ -10,9 +10,11 @@ import Update
 import Url
 import View.CreateFoodItem
 import View.Dashboard
+import View.Edit
 import View.EditFoodItem
 import View.Login
 import View.NavBar
+import View.Recipes
 
 
 onUrlRequest : Browser.UrlRequest -> Msg.Msg
@@ -33,9 +35,9 @@ view : Model.Model -> Browser.Document Msg.Msg
 view model =
     { title = "Recipes"
     , body =
-        [ div []
-            [ View.NavBar.navBar model
-            , mainContent model
+        [ div [ class "h-screen w-full" ]
+            [ mainContent model
+            , View.NavBar.navBar model
             ]
         ]
     }
@@ -43,7 +45,7 @@ view model =
 
 mainContent : Model.Model -> Html Msg.Msg
 mainContent model =
-    div [ class "test" ] <|
+    div [] <|
         case model.activeRoute of
             Router.Dashboard ->
                 View.Dashboard.dashboard model
@@ -56,6 +58,12 @@ mainContent model =
 
             Router.EditFoodItem ->
                 View.EditFoodItem.editFoodItem model
+
+            Router.EditForm ->
+                View.Edit.edit model
+
+            Router.RecipeForm ->
+                View.Recipes.recipes model
 
 
 
