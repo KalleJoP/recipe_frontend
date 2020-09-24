@@ -6,9 +6,9 @@ import Model
 import Msg
 
 
-dashboard : Model.Model -> List (Html Msg.Msg)
+dashboard : Model.Model -> Html Msg.Msg
 dashboard model =
-    [ div [ class "w-full h-full" ]
+    div [ class "w-full h-full" ]
         [ h1 []
             [ text "Dashboard" ]
         , text
@@ -17,4 +17,3 @@ dashboard model =
             [ text "Einkaufliste anzeigen lassen!"
             ]
         ]
-    ]

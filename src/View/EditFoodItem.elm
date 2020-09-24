@@ -26,9 +26,9 @@ renderFoodItemList food_item_list =
         )
 
 
-editFoodItem : Model.Model -> List (Html Msg.Msg)
+editFoodItem : Model.Model -> Html Msg.Msg
 editFoodItem model =
-    [ form []
+    form []
         [ h1 [] [ text "Edit Food Item" ]
         , renderFoodItemList model.food_item_model.food_item_list
         , if model.food_item_model.edit_food_item /= FoodItem.init then
@@ -41,4 +41,3 @@ editFoodItem model =
           else
             text ""
         ]
-    ]

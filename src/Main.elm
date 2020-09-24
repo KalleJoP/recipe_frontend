@@ -35,7 +35,7 @@ view : Model.Model -> Browser.Document Msg.Msg
 view model =
     { title = "Recipes"
     , body =
-        [ div [ class "h-screen w-full" ]
+        [ div [ class "bg-gray-900 h-full min-h-screen w-full" ]
             [ mainContent model
             , View.NavBar.navBar model
             ]
@@ -45,8 +45,8 @@ view model =
 
 mainContent : Model.Model -> Html Msg.Msg
 mainContent model =
-    div [] <|
-        case model.activeRoute of
+    div [ class " h-full w-full" ]
+        [ case model.activeRoute of
             Router.Dashboard ->
                 View.Dashboard.dashboard model
 
@@ -64,6 +64,7 @@ mainContent model =
 
             Router.RecipeForm ->
                 View.Recipes.recipes model
+        ]
 
 
 

@@ -9,12 +9,11 @@ import Model
 import Msg
 
 
-createFoodItem : Model.Model -> List (Html Msg.Msg)
+createFoodItem : Model.Model -> Html Msg.Msg
 createFoodItem _ =
-    [ form [ onSubmit (Msg.FoodItemModelMsg (FoodItemModel.FoodItemMsg FoodItem.SaveFoodItem)) ]
+    form [ onSubmit (Msg.FoodItemModelMsg (FoodItemModel.FoodItemMsg FoodItem.SaveFoodItem)) ]
         [ h1 [] [ text "Create Food Item" ]
         , input [ onInput (Msg.FoodItemModelMsg << FoodItemModel.FoodItemMsg << FoodItem.UpdateName), required True ] []
         , input [ onInput (Msg.FoodItemModelMsg << FoodItemModel.FoodItemMsg << FoodItem.UpdateQuantityType), required True ] []
         , button [ type_ "submit" ] [ text "Save Food Item" ]
         ]
-    ]

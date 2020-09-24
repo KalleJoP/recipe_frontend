@@ -21,7 +21,7 @@ navBar model =
                 Model.RecipeActive ->
                     ( "", "text-red-500", "" )
     in
-    section [ class "block fixed inset-x-0 bottom-0 z-10 bg-gray-800 shadow" ]
+    section [ class "block fixed inset-x-0 bottom-0 z-10 bg-gray-800 shadow h-16" ]
         [ div [ class "flex justify-between text-white" ]
             [ a [ href "/", class ("w-full justify-center inline-block text-center pt-2 pb-1 " ++ colorHome) ]
                 [ FeatherIcons.home

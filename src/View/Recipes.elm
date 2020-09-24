@@ -8,14 +8,13 @@ import Model
 import Msg
 
 
-recipes : Model.Model -> List (Html Msg.Msg)
+recipes : Model.Model -> Html Msg.Msg
 recipes model =
-    [ div []
-        [ h1 []
+    div [ class "flex flex-wrap justify-center" ]
+        [ div [ class "flex-none w-full font-bold text-white  text-xl mb-2" ]
             [ text "Rezepte" ]
-        , div [ class "container" ] [ recipeListRenderer model.recipe_list ]
+        , div [ class "container p-4" ] [ recipeListRenderer model.recipe_list ]
         ]
-    ]
 
 
 recipeItemListRenderer : List RecipeItem.Model -> Html Msg.Msg
@@ -31,71 +30,27 @@ recipeItemListRenderer recipeItemModelList =
         )
 
 
-
--- ul [ class "list-unstyled mt-3 mb-4" ]
---     (List.indexedMap
---         (\_ recipeItem ->
---             li []
---                 [ text (recipeItem.food_item.name ++ " " ++ String.fromInt recipeItem.quantity ++ " " ++ recipeItem.food_item.quantity_type)
---                 ]
---         )
---         recipeItemModelList
---     )
--- div [ class "card mb-4 box-shadow" ]
---                             [ div [ class "card-header" ]
---                                 [ h1 [] [ text recipe.name ]
---                                 ]
---                             , div [ class "card-body" ]
---                                 [ img [ src recipe.picture, class "img-thumbnail", alt "image", width 100, height 10 ] []
---                                 , recipeItemListRenderer recipe.recipe_items
---                                 ]
---                             , div [ class "card-footer" ]
---                                 [ button [ class "btn btn-success" ] [ text "Add to list" ]
---                                 ]
---                             ]
-
-
 recipeListRenderer : Recipe.Model -> Html Msg.Msg
 recipeListRenderer recipeModel =
-    div [ class "card-deck text-center" ]
+    div [ class "flex flex-wrap pb-16 justify-evenly" ]
         (List.concat
             [ List.indexedMap
                 (\_ recipe ->
-                    if List.length recipe.recipe_items /= 0 then
-                        div [ class "col-sm-6 col-md-6 col-lg-4 mb-5" ]
-                            [ div []
-                                [ h1 [] [ text recipe.name ]
-                                , footer [] [ button [] [ text "Add to list" ] ]
-                                , div []
-                                    [ img [ src recipe.picture, class "img-thumbnail", alt "image", width 100, height 10 ] []
-                                    , recipeItemListRenderer recipe.recipe_items
-                                    ]
-                                ]
+                    div [ class "card-shadow cursor-pointer bg-gray-800 text-white flex-none lg:w-64 md:w-64 w-full p-2 lg:p-0 md:p-0 sm:w-64 sm:p-0 mb-4 rounded overflow-hidden shadow-lg flex flex-wrap" ]
+                        [ div [ class "flex-none w-full h-64" ] [ img [ src recipe.picture, class "w-full object-scale-down h-full", alt "image" ] [] ]
+                        , div [ class "px-6 py-4 flex-none w-full" ]
+                            [ div [ class "font-bold text-xl mb-2" ] [ text recipe.name ]
+                            , p [ class "text-gray-700 text-base" ] [ text recipe.description ]
                             ]
-
-                    else
-                        div [ class "col-sm-6 col-md-6 col-lg-4 mb-5" ]
-                            [ div []
-                                [ h1 [] [ text recipe.name ]
-                                , div []
-                                    [ img [ src recipe.picture, class "img-thumbnail", alt "image", width 100, height 10 ] []
-                                    , p [] [ text "Kein Zutaten zu diesem Gericht!" ]
-                                    ]
-                                ]
-                            ]
+                        ]
                 )
                 recipeModel.recipe_list
-            , [ div [ class "col-sm-6 col-md-6 col-lg-4 mb-5" ]
-                    [ div []
-                        [ h1 []
-                            [ text "Neues Rezept" ]
-                        , footer
-                            []
-                            [ button [] [ text "Neues Rezept erstellen" ] ]
-                        , div
-                            []
-                            [ img [ src "placeholder", class "img-thumbnail", alt "image", width 100, height 10 ] []
-                            ]
+            , [ div
+                    [ class "border-green-500 border-solid border-2 card-shadow cursor-pointer bg-gray-800 text-white lg:w-64 md:w-64 w-full mb-4 sm:w-64 sm:p-0 flex-none w-1/3 rounded overflow-hidden shadow-lg flex flex-wrap justify-between" ]
+                    [ div [ class "flex-none w-full h-64" ] [ img [ src "https://freesvg.org/img/primary-tab-new.png", class "w-full object-scale-down h-full", alt "image" ] [] ]
+                    , div [ class "px-6 py-4 flex-none w-full" ]
+                        [ div [ class "font-bold text-xl mb-2" ] [ text "Neues Recept" ]
+                        , p [ class "text-gray-700 text-base" ] [ text "Erstellen Sie ein neues Rezept!" ]
                         ]
                     ]
               ]
