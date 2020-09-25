@@ -4,7 +4,7 @@ import Browser
 import Browser.Navigation as Nav
 import Data.FoodItemModel as FoodItemModel
 import Data.Login as Login
-import Data.Recipe as Recipe
+import Data.RecipeModel as Recipe
 import Model
 import Msg exposing (Msg(..))
 import Router
@@ -44,7 +44,10 @@ update msg model =
                         Router.RecipeForm ->
                             Model.RecipeActive
 
-                        _ ->
+                        Router.Dashboard ->
+                            Model.HomeActive
+
+                        Router.Login ->
                             Model.HomeActive
             in
             ( { model | activeRoute = Router.nextRoute url, nav_status = nav_status }, Cmd.none )
@@ -59,12 +62,12 @@ update msg model =
         GetRecipeList ->
             ( model, Cmd.none )
 
-        RecipeMsg recipeMsg ->
+        RecipeModelMsg recipeMsg ->
             let
-                ( recipe_list, _ ) =
-                    Recipe.update recipeMsg model.recipe_list
+                ( recipe_model, _ ) =
+                    Recipe.update recipeMsg model.recipe_model
             in
-            ( { model | recipe_list = recipe_list }, Cmd.none )
+            ( { model | recipe_model = recipe_model }, Cmd.none )
 
         FoodItemModelMsg foodItemModelMsg ->
             let

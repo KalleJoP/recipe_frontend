@@ -20,6 +20,44 @@ init =
     }
 
 
+type Msg
+    = EditQuantity String
+    | EditFoodItem (List FoodItem.Model) String
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        EditQuantity quantityStr ->
+            let
+                convertResult =
+                    String.toInt quantityStr
+            in
+            case convertResult of
+                Just quantity ->
+                    ( { model | quantity = quantity }, Cmd.none )
+
+                Nothing ->
+                    ( { model | quantity = 0 }, Cmd.none )
+
+        EditFoodItem food_item_list indexStr ->
+            let
+                convertResult =
+                    String.toInt indexStr
+            in
+            case convertResult of
+                Just index ->
+                    case List.head (List.drop index food_item_list) of
+                        Just food_item ->
+                            ( { model | food_item = food_item }, Cmd.none )
+
+                        Nothing ->
+                            ( { model | food_item = FoodItem.init }, Cmd.none )
+
+                Nothing ->
+                    ( { model | food_item = FoodItem.init }, Cmd.none )
+
+
 recipeItemDecoder : Decoder Model
 recipeItemDecoder =
     Decode.succeed Model

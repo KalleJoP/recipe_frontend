@@ -12,7 +12,7 @@ dashboard model =
         [ h1 []
             [ text "Dashboard" ]
         , text
-            model.recipe_list.errorMsg
+            model.recipe_model.errorMsg
         , h2 []
             [ text "Einkaufliste anzeigen lassen!"
             ]

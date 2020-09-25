@@ -3,7 +3,7 @@ module Msg exposing (..)
 import Browser
 import Data.FoodItemModel as FoodItemModel
 import Data.Login as Login
-import Data.Recipe as Recipe
+import Data.RecipeModel as RecipeModel
 import Router
 import Url
 
@@ -15,5 +15,5 @@ type Msg
     | UrlChange Url.Url
     | LoginMsg Login.Msg
     | GetRecipeList
-    | RecipeMsg Recipe.Msg
+    | RecipeModelMsg RecipeModel.Msg
     | FoodItemModelMsg FoodItemModel.Msg
