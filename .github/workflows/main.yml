@@ -24,3 +24,4 @@ jobs:
         server: server7.febas.net
         username: github
         password: ${{ secrets.password }}
+        local-dir: ./build/ 
