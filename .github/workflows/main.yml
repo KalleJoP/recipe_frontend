@@ -15,7 +15,6 @@ jobs:
       
     - name: 🔨 Build Project
       run: |
-        npm install
         elm-app build
     
     - name: 📂 Sync files
