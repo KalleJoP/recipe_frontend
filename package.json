@@ -1,0 +1,24 @@
+{
+  "name": "recipe_frontend",
+  "version": "1.0.0",
+  "description": "## Proxy Starten",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KalleJoP/recipe_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KalleJoP/recipe_frontend/issues"
+  },
+  "homepage": "https://github.com/KalleJoP/recipe_frontend#readme"
+}
