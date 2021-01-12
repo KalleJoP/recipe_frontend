@@ -15,7 +15,7 @@ jobs:
       
     - name: 🔨 Build Project
       run: |
-        npm install --save-dev create-elm-app
+        npm install --save-dev -g create-elm-app
         elm-app build
     
     - name: 📂 Sync files
